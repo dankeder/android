@@ -129,6 +129,17 @@ public class LocalFileListFragment extends ExtendedListFragment {
         Log_OC.d(TAG, "onResume() end");
     }
 
+    public void selectAllFiles(boolean value)
+    {
+        ListView lst = (ListView)getListView();
+        for (int pos = 0; pos < lst.getCount(); pos++) {
+            File file = (File) mAdapter.getItem(pos);
+            if (file.isFile()) {
+                lst.setItemChecked(pos, value);
+            }
+        }
+    }
+
     /**
      * Checks the file clicked over. Browses inside if it is a directory.
      * Notifies the container activity in any case.
